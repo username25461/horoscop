@@ -16,10 +16,22 @@ $splitGA = explode('/', $ga);
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700,900&display=swap&subset=cyrillic" rel="stylesheet">
     <title>horo-construct</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
- var hvost = window.location.search.substring(1);
- 
+$.urlParam = function(name){
+  var results = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href);
+  if (results==null){
+     return null;
+  }
+  else{
+     return results[1] || 0;
+  }
+}
+var fbpixel = $.urlParam('sub5').split('&')[0];   
+  
+  
+ var hvost = window.location.search.substring(1); 
  var elements = document.getElementsByTagName('iframe');
 
  for (var i = 0; i < elements.length; i++) {
@@ -27,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (newHref.indexOf("#")!=-1) continue;
   if (newHref.indexOf("?")==-1) newHref += "?";
   else newHref += "&";
-  if (hvost!="") elements[i].src = newHref + hvost;
+  if (hvost!="") elements[i].src = newHref + hvost + "&sub_id_5=" + fbpixel;
  }
 });
 </script>
